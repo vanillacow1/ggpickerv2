@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Grumps Picker</title>
+
+    <!-- Manifest for Android / modern browsers -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Apple touch icons for iOS home screen -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-192.png" />
+
+    <!-- iOS PWA settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- Theme color for browsers -->
+    <meta name="theme-color" content="#EDAC6E" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Corner Images -->
+    <div class="corner-images">
+      <button id="danCorner"><img src="icons/danny.webp" alt="Danny" /></button>
+      <button id="arinCorner"><img src="icons/arin.png" alt="Arin" /></button>
+    </div>
+
+    <div class="container">
+      <!-- Title -->
+      <h1>Random Grumps</h1>
+
+      <!-- Controls (filters + buttons) -->
+      <div class="controls">
+        <!-- Filters -->
+        <div id="filters">
+          <label for="eraFilter">Select Era:</label>
+          <select id="eraFilter">
+            <option value="">-- Select Era --</option>
+            <option value="jon">Jon Era</option>
+            <option value="dan">Dan Era</option>
+          </select>
+
+          <label for="showFilter">Select Show:</label>
+          <select id="showFilter">
+            <option value="">-- Select Show --</option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div id="buttons">
+          <button id="pickRandom">Pick Random Video</button>
+        </div>
+      </div>
+
+      <!-- Spinner / Notice -->
+      <div class="spinner" id="spinner"></div>
+      <div class="notice" id="notice">
+        Refreshing videos in the background...
+      </div>
+
+      <!-- Video Player -->
+      <div id="playerContainer">
+        <!-- Video iframe and title will be injected here -->
+      </div>
+
+      <!-- Favorites Section -->
+      <h2 id="favoritesHeader">Favorites</h2>
+      <p id="favoritesInstructions">
+        Click thumbnails to play videos, drag to arrange your tier list!
+      </p>
+      <div id="favoritesContainer">
+        <div id="tierListBackground">
+          <img
+            src="icons/tierlisttemplate.png"
+            alt="Tier List Template"
+            id="tierListImage"
+          />
+          <div id="draggableArea"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

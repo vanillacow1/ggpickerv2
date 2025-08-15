@@ -1,0 +1,469 @@
+/* Fonts */
+@font-face {
+  font-family: "BD Cartoon Shout";
+  src: url("./fonts/bd-cartoon-shout.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barthowheel";
+  src: url("./fonts/Barthowheel.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Preload for performance */
+@import url("./fonts/Barthowheel.ttf");
+@import url("./fonts/bd-cartoon-shout.ttf");
+
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background-color: #f29f46;
+  color: black;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+h1 {
+  font-family: "BD Cartoon Shout", Arial, sans-serif;
+  color: white;
+  text-shadow: 2px 2px 0 #7190e3, -2px 2px 0 #7190e3, 2px -2px 0 #7190e3,
+    -2px -2px 0 #7190e3;
+  font-size: 3rem;
+  margin: 0.3rem 0 1rem 0;
+  text-align: center;
+}
+h2,
+#favoritesHeader {
+  font-family: "BD Cartoon Shout", Arial, sans-serif;
+  color: white;
+  text-shadow: 2px 2px 0 #7190e3, -2px 2px 0 #7190e3, 2px -2px 0 #7190e3,
+    -2px -2px 0 #7190e3;
+  text-align: center;
+}
+#favoritesHeader {
+  font-size: 2rem;
+  margin: 2rem 0 0.5rem 0;
+}
+
+#favoritesInstructions {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+/* Corner images */
+.corner-images {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto 0.5rem auto;
+  height: 110px;
+}
+#danCorner,
+#arinCorner {
+  position: absolute;
+  top: 0;
+  width: 110px;
+  height: 110px;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 10;
+}
+#danCorner {
+  left: 0;
+}
+#arinCorner {
+  right: 0;
+}
+#danCorner img,
+#arinCorner img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  background: none;
+}
+
+/* Main container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+/* Filters dropdown */
+#showFilter,
+#eraFilter {
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 2px solid #9be1fa;
+  font-family: Arial, sans-serif;
+  min-width: 150px;
+  margin: 0.5rem;
+  text-align: center;
+}
+select#showFilter,
+select#eraFilter {
+  font-family: "Barthowheel", Arial, sans-serif !important;
+}
+
+/* Add spacing between filters */
+#eraFilter {
+  margin-bottom: 1rem;
+}
+
+/* Label + video title font */
+#filters label,
+label[for="showFilter"],
+label[for="eraFilter"],
+#videoTitle {
+  font-family: "Barthowheel", Arial, sans-serif;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  background-color: #7190e3;
+  border: 2px solid #9be1fa;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.3rem;
+  color: black;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  min-width: 140px;
+}
+button:hover:not(:disabled) {
+  background-color: #5677cc;
+  border-color: #7ec8f5;
+}
+button:disabled {
+  background-color: #555;
+  border-color: #444;
+  cursor: not-allowed;
+  color: #ccc;
+}
+button#pickRandom {
+  font-family: "Barthowheel", Arial, sans-serif !important;
+  display: block;
+  margin: 1rem auto; /* center button */
+}
+button#getVideoBtn,
+button#favBtn {
+  font-family: "Barthowheel", Arial, sans-serif;
+  font-size: 1.4rem;
+}
+
+/* Favorite button inside video section */
+.favorite-btn,
+#favBtn {
+  display: block;
+  margin: 1rem auto 2rem auto;
+  max-width: 180px;
+  text-align: center;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.4rem;
+}
+
+/* Center dynamically injected video content */
+#playerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#playerContainer iframe {
+  margin-bottom: 0.5rem;
+}
+#playerContainer #videoTitle {
+  margin-bottom: 0.5rem;
+}
+#playerContainer #favBtn {
+  margin: 0.5rem auto 1.5rem auto;
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #edac6e;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  display: none;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Notice styling */
+.notice {
+  font-size: 14px;
+  color: black; /* changed from orange */
+  margin-top: 10px;
+  display: flex;
+  justify-content: center; /* center under spinner */
+  text-align: center;
+}
+
+/* Hide notice if videos appear */
+#playerContainer:not(:empty) + .notice,
+#favoritesContainer:not(:empty) + .notice {
+  display: none;
+}
+
+/* Video Player Styles */
+#playerContainer iframe {
+  display: block;
+  width: 90vw;
+  height: 50vw;
+  max-width: 800px;
+  max-height: 450px;
+  border-radius: 8px;
+  border: 3px solid #9be1fa;
+  background: black;
+}
+
+/* make sure the injected video title uses Barthowheel */
+#videoTitle {
+  font-family: "Barthowheel", Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: black;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Favorites styling - Tier List Layout */
+#favoritesContainer {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tierListBackground {
+  position: relative;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #9be1fa;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#tierListImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+#draggableArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.favVideo {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+  z-index: 100;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  border-radius: 4px;
+  border: 2px solid #9be1fa;
+  margin-top: 0.25rem; /* space below remove button */
+}
+
+.favVideo img {
+  width: 60px;
+  height: 45px;
+  border-radius: 4px;
+  border: 2px solid #333;
+  background: white;
+  display: block;
+  transition: border-color 0.2s ease;
+}
+
+.favVideo:hover img {
+  border-color: transparent;
+}
+
+.favVideo .remove-fav-btn {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d33;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.7rem;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  display: none;
+  z-index: 11;
+  transition: background-color 0.2s ease;
+  line-height: 18px;
+  text-align: center;
+}
+
+.favVideo .remove-fav-btn:hover {
+  background-color: #b22;
+}
+
+.favVideo:hover .remove-fav-btn {
+  display: block;
+}
+
+/* Empty state */
+#draggableArea:empty::after {
+  content: "Add some favorites to create your tier list!";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #666;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 720px) {
+  .favVideo img {
+    width: 45px;
+    height: 33.75px;
+  }
+
+  .favVideo .remove-fav-btn {
+    width: 14px;
+    height: 14px;
+    font-size: 0.5rem;
+    line-height: 14px;
+  }
+
+  .favVideo:hover {
+    transform: none;
+  }
+}
+
+/* Animations */
+.pulse {
+  animation: pulseAnim 0.8s ease forwards;
+}
+@keyframes pulseAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Center filters + buttons */
+.controls {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  align-items: center; /* center horizontally */
+  justify-content: center; /* center vertically if container has height */
+  gap: 1rem; /* spacing between filters and buttons */
+  margin: 1rem 0;
+  width: 100%;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  #playerContainer iframe {
+    width: 95vw;
+    height: 53vw;
+  }
+  #playerContainer #favBtn {
+    max-width: 90vw;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+  button {
+    width: 90vw;
+    max-width: 350px;
+    font-size: 1.2rem;
+  }
+  /* Tier list responsive adjustments */
+  #favoritesContainer {
+    max-width: 95vw;
+  }
+
+  /* Center the label + dropdown on mobile */
+  #filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  #filters label {
+    margin-bottom: 0.2rem;
+  }
+  #showFilter,
+  #eraFilter {
+    width: 90vw;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 400px) {
+  #playerContainer iframe {
+    width: 95vw;
+    height: 53vw;
+  }
+  #playerContainer #favBtn {
+    max-width: 95vw;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+  button {
+    width: 95vw;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.8rem;
+  }
+  /* Tier list responsive adjustments for small screens */
+  #favoritesContainer {
+    max-width: 98vw;
+  }
+  #showFilter,
+  #eraFilter {
+    width: 95vw;
+  }
+}
