@@ -342,10 +342,6 @@ button#favBtn {
   background-color: #b22;
 }
 
-.favVideo:hover .remove-fav-btn {
-  display: block;
-}
-
 /* Empty state */
 #draggableArea:empty::after {
   content: "Add some favorites to create your tier list!";
