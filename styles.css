@@ -344,7 +344,7 @@ button#favBtn {
 
 /* Empty state */
 #draggableArea:empty::after {
-  content: "Add some favorites to create your tier list!";
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
