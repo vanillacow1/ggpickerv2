@@ -106,7 +106,8 @@ h2,
 
 /* Filters dropdown */
 #showFilter,
-#eraFilter {
+#eraFilter,
+#seriesFilter {
   font-size: 1.1rem;
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
@@ -117,7 +118,8 @@ h2,
   text-align: center;
 }
 select#showFilter,
-select#eraFilter {
+select#eraFilter,
+select#seriesFilter {
   font-family: "Barthowheel", Arial, sans-serif !important;
 }
 
@@ -126,10 +128,19 @@ select#eraFilter {
   margin-bottom: 1rem;
 }
 
+.filter-hint {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin: 0.2rem 0 0.5rem 0;
+  text-align: center;
+}
+
 /* Label + video title font */
 #filters label,
 label[for="showFilter"],
 label[for="eraFilter"],
+label[for="seriesFilter"],
 #videoTitle {
   font-family: "Barthowheel", Arial, sans-serif;
   font-weight: normal;
@@ -433,7 +444,8 @@ button#favBtn {
     margin-bottom: 0.2rem;
   }
   #showFilter,
-  #eraFilter {
+  #eraFilter,
+  #seriesFilter {
     width: 90vw;
     max-width: 350px;
   }
@@ -459,7 +471,8 @@ button#favBtn {
     max-width: 98vw;
   }
   #showFilter,
-  #eraFilter {
+  #eraFilter,
+  #seriesFilter {
     width: 95vw;
   }
 }
