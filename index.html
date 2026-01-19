@@ -9,9 +9,21 @@
     <link rel="manifest" href="manifest.json" />
 
     <!-- Apple touch icons for iOS home screen -->
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180x180.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512x512.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icons/icon-180x180.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="icons/icon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="icons/icon-192x192.png"
+    />
 
     <!-- iOS PWA settings -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +64,15 @@
           <select id="showFilter">
             <option value="">-- Select Show --</option>
           </select>
+
+          <label for="seriesFilter">Series (optional):</label>
+          <select id="seriesFilter">
+            <option value="">-- All Series --</option>
+            <option value="mario">Mario</option>
+            <option value="zelda">Zelda</option>
+            <option value="sonic">Sonic</option>
+          </select>
+          <p class="filter-hint">Find Part 1 episodes of a game series</p>
         </div>
 
         <!-- Buttons -->
