@@ -16,6 +16,7 @@ const shows = [
 
 const showSelect = document.getElementById("showFilter");
 const eraSelect = document.getElementById("eraFilter");
+const seriesSelect = document.getElementById("seriesFilter");
 const spinner = document.getElementById("spinner");
 const notice = document.getElementById("notice");
 const playerContainer = document.getElementById("playerContainer");
@@ -40,6 +41,9 @@ showSelect.value = "UU9CuvdOVfMPvKCiwdGKL3cQ";
 
 // Default to no era filter (show all videos)
 eraSelect.value = "";
+
+// Default to no series filter (show all videos)
+seriesSelect.value = "";
 
 // IndexedDB setup
 const request = indexedDB.open(DB_NAME, 2);
@@ -462,6 +466,33 @@ async function fetchVideos(show) {
   return cache[show.title] || [];
 }
 
+// ---------- SERIES FILTERING ----------
+function filterVideosBySeries(videos, seriesName) {
+  if (!seriesName || seriesName.trim() === "") return videos;
+
+  const searchTerm = seriesName.toLowerCase().trim();
+
+  // Filter videos that match the series name and contain "part 1"
+  const seriesVideos = videos.filter((video) => {
+    const title = video.snippet.title.toLowerCase();
+
+    // Check if title contains the series name
+    const hasSeries = title.includes(searchTerm);
+
+    // Check for "part 1" but exclude "part 1X" (10-19), "part 10X" (100-109), etc.
+    // This regex matches "part 1" only when followed by a non-digit or end of string
+    const isPart1 =
+      title.match(/part\s*1(?!\d)/) ||
+      title.match(/[-–]\s*1\s*[-–]/) ||
+      title.match(/episode\s*1(?!\d)/) ||
+      title.match(/\s1\s*[-:–](?!\d)/); // matches patterns like " 1 -" or " 1:" but not " 1X"
+
+    return hasSeries && isPart1;
+  });
+
+  return seriesVideos;
+}
+
 // ---------- ERA FILTERING ----------
 function filterVideosByEra(videos, era) {
   if (!era) return videos;
@@ -531,21 +562,30 @@ document.getElementById("pickRandom").addEventListener("click", async () => {
     (s) => s.id === selectedValue || s.channel === selectedValue
   );
   const selectedEra = eraSelect.value;
+  const seriesName = seriesSelect.value;
 
   const videos = await fetchVideos(selectedShow);
   if (!videos.length) {
     notice.textContent = "No videos found.";
+    notice.style.display = "block";
     return;
   }
 
-  // Apply era filter
-  const filteredVideos = filterVideosByEra(videos, selectedEra);
+  // Apply era filter first
+  let filteredVideos = filterVideosByEra(videos, selectedEra);
+
+  // Then apply series filter if provided
+  if (seriesName && seriesName.trim() !== "") {
+    filteredVideos = filterVideosBySeries(filteredVideos, seriesName);
+  }
 
   if (!filteredVideos.length) {
     const eraText = selectedEra
       ? ` in ${selectedEra === "jon" ? "Jon" : "Dan"} Era`
       : "";
-    notice.textContent = `No videos found for ${selectedShow.title}${eraText}.`;
+    const seriesText = seriesName ? ` for series "${seriesName}"` : "";
+    notice.textContent = `No videos found for ${selectedShow.title}${eraText}${seriesText}.`;
+    notice.style.display = "block";
     return;
   }
 
@@ -557,6 +597,8 @@ document.getElementById("pickRandom").addEventListener("click", async () => {
   const eraText = selectedEra
     ? ` (${selectedEra === "jon" ? "Jon" : "Dan"} Era)`
     : "";
-  notice.textContent = `Showing: ${selectedShow.title}${eraText} - ${filteredVideos.length} videos available`;
+  const seriesText = seriesName ? ` - "${seriesName}" series` : "";
+  notice.textContent = `Showing: ${selectedShow.title}${eraText}${seriesText} - ${filteredVideos.length} videos available`;
+  notice.style.display = "block";
   setTimeout(() => (notice.style.display = "none"), 3000);
 });
